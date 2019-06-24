@@ -1,19 +1,16 @@
 <template>
     <div>
         <Form ref="form" :label-width="150" :rules="rules" :model="data">
-            <FormItem label="old password" prop="oldpassword">
-                <input type="text" v-model="data.oldpassword"/>
+            <FormItem label="Book Name" prop="bookName">
+                <input type="text" v-model="data.bookName"/>
             </FormItem>
-            <FormItem label="new password" prop="newpassword1">
-                <input type="password" v-model="data.newpassword1"/>
-            </FormItem>
-            <FormItem label="Enter the new password again" prop="newpassword2">
-                <input type="password" v-model="data.newpassword2"/>
+            <FormItem label="Username" prop="username">
+                <input type="text" v-model="data.username"/>
             </FormItem>
             <FormItem>
                 <Button color="primary"
                         :loading="isLoading"
-                        @click="submit">submit</Button>&nbsp;&nbsp;&nbsp;<Button >cancel</Button>
+                        @click="submit">Save</Button>
             </FormItem>
         </Form>
     </div>
@@ -24,21 +21,11 @@
             return {
                 isLoading: false,
                 data: {
-                    oldpassword: null,
-                    newpassword1: null,
-                    newpassword2: null
+                    bookName: null,
+                    username: null,
                 },
                 rules: {
-                    required: ['oldpassword', 'newpassword1', 'newpassword2'],
-                    combineRules: [
-                        {
-                            refs: ['newpassword1', 'newpassword2'],
-                            valid: {
-                                valid: 'equal',
-                                message: 'Inconsistent password entered twice'
-                            }
-                        }
-                    ]
+                    required: ['bookName', 'username'],
                 }
             };
         },
