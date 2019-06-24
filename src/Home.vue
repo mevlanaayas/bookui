@@ -14,7 +14,7 @@
                 </p>
             </h-circle>
         </div>
-        <div width="600">
+        <div>
             <button class="h-btn" @click="openBookModal = true">Add New Book</button>
             <Modal v-model="openBookModal">
                 <CreateBook :fruit="value" :params="{subparam: 'test1'}" @close="openBookModal=false"

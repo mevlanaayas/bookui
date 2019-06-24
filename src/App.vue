@@ -16,11 +16,6 @@
                         <h-button icon="h-icon-home" size="l" style="font-size: 16px"
                                   @click="goToMain">Home
                         </h-button>
-                        <DropdownMenu button class="h-btn-secondary" style="font-size: 16px" size="l" :equal-width="true"
-                                      class-name="h-text-dropdown"
-                                      @click="triggerSelectDropdown" :datas="dropdownData">
-                            <div v-width="100">Add New</div>
-                        </DropdownMenu>
                     </div>
                 </HHeader>
                 <h-content style="padding: 0 30px;">
@@ -42,8 +37,7 @@
                 menuData: [
                     {title: 'Books', key: 'books', icon: 'h-icon-user'},
                     {title: 'Words', key: 'words', icon: 'h-icon-task'}
-                ],
-                dropdownData: ['Book', 'Word']
+                ]
             };
         },
         methods: {
@@ -52,10 +46,6 @@
                     name: menu.key
                 });
                 this.$Message.info(`Selected ${menu.key}`);
-            },
-            triggerSelectDropdown(code, data, event) {
-                this.$Message.info(`You clicked ${code}`);
-                log(data, event);
             },
             goToMain() {
                 this.$router.push('/');
