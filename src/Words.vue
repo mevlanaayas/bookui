@@ -21,7 +21,7 @@
             </div>
             <div slot="footer">
                 <button class="h-btn" @click="openWordDetailModal = false">Close</button>
-                <button class="h-btn h-btn-primary" @click="$Message.success('Retrieving Related Works')">
+                <button class="h-btn h-btn-primary" @click="getRelatedWords">
                     Show Related Words
                 </button>
             </div>
@@ -69,12 +69,24 @@
                 },
                 openWordDetailModal: false,
                 openWordModal: false,
-                words: []
+                words: [],
+                selectedWord: null
             };
         },
         methods: {
             trclick(data, event, index) {
+                this.selectedWord = data.Word;
                 this.openWordDetailModal = true;
+            },
+            getRelatedWords() {
+                Api.RelatedWords({
+                    'params': {
+                        'username': 'mevlana',
+                        'relatedWord': this.selectedWord
+                    }
+                }).then(response => {
+                    console.log(response)
+                })
             }
         },
         created() {

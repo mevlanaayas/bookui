@@ -6,6 +6,7 @@ const api = '/api/';
 const books = api + 'me/books';
 const words = api + 'me/words';
 const stats = api + 'me/stats';
+const relatedWords = api + 'words';
 
 //post
 const createBook = api + 'books';
@@ -36,5 +37,10 @@ export default  {
         console.log(`Options: ${options}`);
         console.log(`CreateWord: ${createWord}`);
         return axios.post(createWord, {...options})
+    },
+    RelatedWords: function (options) {
+        console.log(`Options: ${options}`);
+        console.log(`RelatedWords: ${relatedWords}`);
+        return axios.get(relatedWords, {...options})
     }
 }
