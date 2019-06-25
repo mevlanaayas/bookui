@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Form ref="form" :label-width="150" :rules="rules" :model="data">
+        <Form ref="form" :label-width="100" :rules="rules" :model="data">
             <FormItem>
                 <p>Create New Book</p>
             </FormItem>

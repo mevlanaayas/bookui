@@ -1,19 +1,29 @@
 <template>
     <div>
-        <Form ref="form" :label-width="150" :rules="rules" :model="data">
-            <FormItem label="old password" prop="oldpassword">
-                <input type="text" v-model="data.oldpassword"/>
+        <Form ref="form" :label-width="100" :rules="rules" :model="data">
+            <FormItem>
+                <p>Create New Word</p>
             </FormItem>
-            <FormItem label="new password" prop="newpassword1">
-                <input type="password" v-model="data.newpassword1"/>
+            <FormItem label="Word" prop="Word">
+                <input type="text" v-model="data.Word"/>
             </FormItem>
-            <FormItem label="Enter the new password again" prop="newpassword2">
-                <input type="password" v-model="data.newpassword2"/>
+            <FormItem label="Book" prop="BookId">
+                <input type="number" v-model="data.BookId"/>
+            </FormItem>
+            <FormItem label="Sentence" prop="Sentence">
+                <input type="text" v-model="data.Sentence"/>
+            </FormItem>
+            <FormItem label="Translate" prop="Translate">
+                <input type="text" v-model="data.Translate"/>
+            </FormItem>
+            <FormItem label="Username" prop="CreatedUser">
+                <input type="text" v-model="data.CreatedUser"/>
             </FormItem>
             <FormItem>
                 <Button color="primary"
                         :loading="isLoading"
-                        @click="submit">submit</Button>&nbsp;&nbsp;&nbsp;<Button >cancel</Button>
+                        @click="submit">submit
+                </Button>
             </FormItem>
         </Form>
     </div>
@@ -24,21 +34,14 @@
             return {
                 isLoading: false,
                 data: {
-                    oldpassword: null,
-                    newpassword1: null,
-                    newpassword2: null
+                    Word: null,
+                    BookId: null,
+                    Sentence: null,
+                    Translate: null,
+                    CreatedUser: 'mevlana',
                 },
                 rules: {
-                    required: ['oldpassword', 'newpassword1', 'newpassword2'],
-                    combineRules: [
-                        {
-                            refs: ['newpassword1', 'newpassword2'],
-                            valid: {
-                                valid: 'equal',
-                                message: 'Inconsistent password entered twice'
-                            }
-                        }
-                    ]
+                    required: ['Word', 'BookId', 'CreatedUser'],
                 }
             };
         },
