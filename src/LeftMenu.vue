@@ -5,7 +5,6 @@
 </template>
 
 <script>
-    import store from './store';
     import { mapGetters } from 'vuex';
     export default {
         props: {
@@ -34,7 +33,6 @@
                 ]
             };
         },
-        store,
         computed: {
             ...mapGetters({
                 test: 'isSideBarOpen'

@@ -8,7 +8,10 @@
                 <input type="text" v-model="data.Word"/>
             </FormItem>
             <FormItem label="Book" prop="BookId">
-                <input type="number" v-model="data.BookId"/>
+                <Select v-model="data.BookId" :datas="books" keyName="ID" titleName="Name" placeholder="Choose Book"
+                        null-option-text="Words to Book, Remember"
+                        @change="change">
+                </Select>
             </FormItem>
             <FormItem label="Sentence" prop="Sentence">
                 <input type="text" v-model="data.Sentence"/>
@@ -29,6 +32,8 @@
     </div>
 </template>
 <script>
+    import Api from './api'
+
     export default {
         data() {
             return {
@@ -42,13 +47,27 @@
                 },
                 rules: {
                     required: ['Word', 'BookId', 'CreatedUser'],
-                }
+                },
+                books: [],
+                xd: [1,2,3,4,5],
             };
         },
         methods: {
             submit() {
                 let validResult = this.$refs.form.valid();
                 if (validResult.result) {
+                    console.log(this.data);
+                    Api.CreateWord({
+                        'Word': this.data.Word,
+                        'BookId': this.data.BookId,
+                        'Sentence': this.data.Sentence,
+                        'Translate': this.data.Translate,
+                        'CreatedUser': this.data.CreatedUser,
+                        'UpdatedUser': this.data.CreatedUser
+                    }).then(response => {
+                        console.log(response);
+                        this.close()
+                    });
                     this.$Message('Successful verification');
                     this.isLoading = true;
                     setTimeout(() => {
@@ -61,7 +80,20 @@
                             }. The error has not been verified.`
                     );
                 }
+            },
+            close() {
+                this.$emit('close');
+            },
+            change(data) {
+                console.log('changeData:', data);
             }
+        },
+        created() {
+            Api.Books({'params': {'username': 'mevlana'}}).then(response => {
+                this.books = response.data.data;
+                console.log("Book options", this.books);
+                console.log("Xd options", this.xd)
+            })
         }
     };
 </script>

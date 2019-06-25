@@ -13,12 +13,15 @@
             <FormItem>
                 <Button color="primary"
                         :loading="isLoading"
-                        @click="submit">Save</Button>
+                        @click="submit">Save
+                </Button>
             </FormItem>
         </Form>
     </div>
 </template>
 <script>
+    import Api from './api'
+
     export default {
         data() {
             return {
@@ -36,6 +39,14 @@
             submit() {
                 let validResult = this.$refs.form.valid();
                 if (validResult.result) {
+                    Api.CreateBook({
+                        'Name': this.data.bookName,
+                        'CreatedUser': this.data.username,
+                        'UpdatedUser': this.data.username
+                    }).then(response => {
+                        console.log(response);
+                        this.close()
+                    });
                     this.$Message('Successful verification');
                     this.isLoading = true;
                     setTimeout(() => {
@@ -48,6 +59,9 @@
                             }. The error has not been verified.`
                     );
                 }
+            },
+            close() {
+                this.$emit('close');
             }
         }
     };
