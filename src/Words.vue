@@ -7,19 +7,27 @@
         <Modal v-model="openWordModal">
             <CreateWord @close="openWordModal=false"></CreateWord>
         </Modal>
+
         <Modal v-model="openWordDetailModal" v-bind="params">
-            <div slot="header">Vue</div>
-            <div :style="{'height': height ? '800px' : 'auto'}">
-                <div>This is a custom vue popup</div>
-                <div><Select dict="simple" v-width="160"></Select></div>
+            <div slot="header">Word here</div>
+            <div>
+                Sentence
+            </div>
+            <div>
+                Translate
+            </div>
+            <div>
+                Book
             </div>
             <div slot="footer">
                 <button class="h-btn" @click="openWordDetailModal = false">Close</button>
-                <button class="h-btn h-btn-primary" @click="$Message.success('hımm')">Dunno</button>
+                <button class="h-btn h-btn-primary" @click="$Message.success('Retrieving Related Works')">
+                    Show Related Words
+                </button>
             </div>
         </Modal>
 
-        <h-table @trclick="trclick" :datas="words" stripe >
+        <h-table @trclick="trclick" :datas="words" stripe>
             <TableItem title="Id" align="center" prop="ID" sort="true"></TableItem>
             <TableItem title="Name" align="center" prop="Word" sort="true"></TableItem>
             <TableItem title="Name" align="center" prop="Sentence" sort="true"></TableItem>

@@ -7,12 +7,10 @@
         <Modal v-model="openBookModal">
             <CreateBook @close="openBookModal=false"></CreateBook>
         </Modal>
+
         <Modal v-model="openBookDetailModal" v-bind="params">
-            <div slot="header">Vue</div>
-            <div :style="{'height': height ? '800px' : 'auto'}">
-                <div>This is a custom vue popup</div>
-                <div><Select dict="simple" v-width="160"></Select></div>
-            </div>
+            <div slot="header">Book Name Here</div>
+            <div>Word list goes here</div>
             <div slot="footer">
                 <button class="h-btn" @click="openBookDetailModal = false">Close</button>
                 <button class="h-btn h-btn-primary" @click="$Message.success('Added new word')">Add Word</button>
