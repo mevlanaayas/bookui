@@ -90,7 +90,6 @@
         },
         created() {
             this.data.BookId = this.bookId;
-            console.log(this.bookId);
             Api.Books({'params': {'username': 'mevlana'}}).then(response => {
                 this.books = response.data.data;
             })

@@ -76,10 +76,12 @@
         created() {
             Api.Books({'params': {'username': 'mevlana'}}).then(response => {
                 if (response.status === 200) {
-                    this.$Message.success("Successfully retrieved books");
-                    this.books = response.data.data;
-                    console.log("Books: ", this.books)
-
+                    if (response.data.status) {
+                        this.$Message.success("Successfully retrieved books");
+                        this.books = response.data.data;
+                    }else {
+                        this.$Message.error("Error getting books")
+                    }
                 } else {
                     this.$Message.error("Error getting books")
                 }

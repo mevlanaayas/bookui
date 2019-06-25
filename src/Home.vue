@@ -69,11 +69,14 @@
         created() {
             Api.Stats({}).then(
                 response => {
-                    console.log('HOME: Response: ', response);
                     if (response.status === 200) {
-                        this.$Message.success(`Success`);
-                        this.bookCount = response.data.data['BookCount'];
-                        this.wordCount = response.data.data['WordCount'];
+                        if (response.data.status) {
+                            this.$Message.success(`Success`);
+                            this.bookCount = response.data.data['BookCount'];
+                            this.wordCount = response.data.data['WordCount'];
+                        } else {
+                            this.$Message.error(`Error`);
+                        }
                     } else {
                         this.$Message.error(`Error`);
                     }

@@ -80,9 +80,12 @@
         created() {
             Api.Words({'params': {'username': 'mevlana'}}).then(response => {
                 if (response.status === 200) {
-                    this.$Message.success("Successfully retrieved words");
-                    this.words = response.data.data;
-                    console.log("Words: ", this.books)
+                    if (response.data.status) {
+                        this.$Message.success("Successfully retrieved words");
+                        this.words = response.data.data;
+                    } else {
+                        this.$Message.success("Error getting words");
+                    }
 
                 } else {
                     this.$Message.error("Error getting words")
