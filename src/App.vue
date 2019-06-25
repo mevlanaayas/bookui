@@ -1,7 +1,6 @@
 <template>
     <div class="layout-demo-3-vue">
         <Layout>
-
             <Layout :headerFixed="true">
                 <HHeader theme="white">
                     <div style="width:600px;float:left;">
@@ -25,6 +24,7 @@
 
 <script>
     import LeftMenu from './LeftMenu'
+
     export default {
         name: 'App',
         data() {
@@ -43,8 +43,8 @@
                     width: 400,
                     component: {
                         vue: LeftMenu,
-                        data: { subparam: 'test1' }, // 子组件使用props params参数获取数据，建议使用datas
-                        datas: { fruit: this.value } // 子组件直接使用 props 即可使用，兼容性 1.15.0+
+                        data: {subparam: 'test1'},
+                        datas: {fruit: this.value}
                     },
                     events: {
                         success: (modal, data) => {
@@ -65,6 +65,6 @@
         }
     }
 </script>
-<style>
+<style lang="less">
     @import "./animate.css";
 </style>
