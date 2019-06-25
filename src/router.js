@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './Home';
 import Books from './Books';
 import Words from './Words';
+import Test from './Test';
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ const router = new Router({
             path: '/words',
             name: 'words',
             component: Words
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: Test
         },
 
         {path: '*', redirect: '/'}
