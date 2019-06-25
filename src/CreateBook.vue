@@ -1,6 +1,9 @@
 <template>
     <div>
         <Form ref="form" :label-width="150" :rules="rules" :model="data">
+            <FormItem>
+                <p>Create New Book</p>
+            </FormItem>
             <FormItem label="Book Name" prop="bookName">
                 <input type="text" v-model="data.bookName"/>
             </FormItem>
@@ -22,7 +25,7 @@
                 isLoading: false,
                 data: {
                     bookName: null,
-                    username: null,
+                    username: "mevlana",
                 },
                 rules: {
                     required: ['bookName', 'username'],

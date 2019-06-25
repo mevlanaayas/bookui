@@ -7,15 +7,38 @@
         <Modal v-model="openBookModal">
             <CreateBook @close="openBookModal=false"></CreateBook>
         </Modal>
+        <Modal v-model="openBookDetailModal" v-bind="params">
+            <div slot="header">Vue</div>
+            <div :style="{'height': height ? '800px' : 'auto'}">
+                <div>This is a custom vue popup</div>
+                <div><Select dict="simple" v-width="160"></Select></div>
+            </div>
+            <div slot="footer">
+                <button class="h-btn" @click="openBookDetailModal = false">Close</button>
+                <button class="h-btn h-btn-primary" @click="$Message.success('Added new word')">Add Word</button>
+            </div>
+        </Modal>
 
-        <h-table :datas="books" stripe checkbox>
-            <TableItem title="Id" align="center" prop="ID" sort="auto"></TableItem>
-            <TableItem title="Name" align="center" prop="name" sort="auto"></TableItem>
-            <TableItem title="Username" align="center" prop="created_user" sort="auto"></TableItem>
-            <TableItem title="Created Date" align="center" prop="CreatedAt"></TableItem>
-            <TableItem title="Last Modified" align="center" prop="UpdatedAt"></TableItem>
-            <TableItem title="Word Count" align="center" prop="WordCount"></TableItem>
-            <div slot="empty">Custom reminder: no data at this time</div>
+        <h-table @trclick="trclick" :datas="books" stripe >
+            <TableItem title="Id" align="center" prop="ID" sort="true"></TableItem>
+            <TableItem title="Name" align="center" prop="Name" sort="true"></TableItem>
+            <TableItem title="Username" align="center" prop="CreatedUser" sort="true"></TableItem>
+            <TableItem title="Created Date" align="center" sort="true">
+                <template slot-scope="{data}">
+                    {{data.CreatedAt | formatDateTime}}
+                </template>
+            </TableItem>
+            <TableItem title="Last Modified" align="center" sort="auto">
+                <template slot-scope="{data}">
+                    {{data.UpdatedAt | formatDateTime}}
+                </template>
+            </TableItem>
+            <TableItem title="Word Count" align="center" sort="true">
+                <template slot-scope="{data}">
+                    {{data.Words.length}}
+                </template>
+            </TableItem>
+            <div slot="empty">There is no book saved. ATM</div>
         </h-table>
     </div>
 </template>
@@ -30,12 +53,22 @@
         },
         data() {
             return {
+                params: {
+                    closeOnMask: true,
+                    hasMask: true,
+                },
+                openBookDetailModal: false,
                 openBookModal: false,
                 books: []
             };
         },
+        methods: {
+            trclick(data, event, index) {
+                this.openBookDetailModal = true;
+            }
+        },
         created() {
-            Api.Books({'params': {'username': '1'}}).then(response => {
+            Api.Books({'params': {'username': 'mevlana'}}).then(response => {
                 if (response.status === 200) {
                     this.$Message.success("Successfully retrieved books");
                     this.books = response.data.data;

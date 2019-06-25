@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router'
 import store from './store'
+import './filters.js'
 
 import HeyUI from 'heyui';
 import './css/index.less';

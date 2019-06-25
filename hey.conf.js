@@ -15,7 +15,8 @@ module.exports = {
           "target": "http://localhost:8000",
           changeOrigin: true
         }
-      }
+      },
+      historyApiFallback: true
     },
     externals: {},
     globalVars: './src/css/var.less'
