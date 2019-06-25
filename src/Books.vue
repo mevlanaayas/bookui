@@ -7,13 +7,16 @@
         <Modal v-model="openBookModal">
             <CreateBook @close="openBookModal=false"></CreateBook>
         </Modal>
+        <Modal v-model="openWordModal">
+            <CreateWord @close="openWordModal=false" :book-id="selectedBook"></CreateWord>
+        </Modal>
 
         <Modal v-model="openBookDetailModal" v-bind="params">
             <div slot="header">Book Name Here</div>
             <div>Word list goes here</div>
             <div slot="footer">
                 <button class="h-btn" @click="openBookDetailModal = false">Close</button>
-                <button class="h-btn h-btn-primary" @click="$Message.success('Added new word')">Add Word</button>
+                <button class="h-btn h-btn-primary" @click="openWordModal=true">Add Word</button>
             </div>
         </Modal>
 
@@ -44,10 +47,12 @@
 <script>
     import Api from './api'
     import CreateBook from './CreateBook'
+    import CreateWord from './CreateWord'
 
     export default {
         components: {
-            CreateBook
+            CreateBook,
+            CreateWord
         },
         data() {
             return {
@@ -57,12 +62,15 @@
                 },
                 openBookDetailModal: false,
                 openBookModal: false,
-                books: []
+                openWordModal: false,
+                books: [],
+                selectedBook: null
             };
         },
         methods: {
             trclick(data, event, index) {
-                this.openBookDetailModal = true;
+                this.selectedBook = data.ID;
+                this.openBookDetailModal = true
             }
         },
         created() {

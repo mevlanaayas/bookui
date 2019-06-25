@@ -34,7 +34,8 @@
 <script>
     import Api from './api'
 
-    export default {
+    export default{
+        props: {bookId: Number},
         data() {
             return {
                 isLoading: false,
@@ -56,7 +57,6 @@
             submit() {
                 let validResult = this.$refs.form.valid();
                 if (validResult.result) {
-                    console.log(this.data);
                     Api.CreateWord({
                         'Word': this.data.Word,
                         'BookId': this.data.BookId,
@@ -89,10 +89,10 @@
             }
         },
         created() {
+            this.data.BookId = this.bookId;
+            console.log(this.bookId);
             Api.Books({'params': {'username': 'mevlana'}}).then(response => {
                 this.books = response.data.data;
-                console.log("Book options", this.books);
-                console.log("Xd options", this.xd)
             })
         }
     };
