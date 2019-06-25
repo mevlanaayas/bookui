@@ -40,11 +40,9 @@
             open(place) {
                 this.$Modal({
                     type: `drawer-${place}`,
-                    width: 400,
+                    width: 300,
                     component: {
                         vue: LeftMenu,
-                        data: {subparam: 'test1'},
-                        datas: {fruit: this.value}
                     },
                     events: {
                         success: (modal, data) => {
@@ -52,12 +50,6 @@
                         }
                     }
                 });
-            },
-            triggerSelectMenu(menu) {
-                this.$router.push({
-                    name: menu.key
-                });
-                this.$Message.info(`Selected ${menu.key}`);
             },
             goToMain() {
                 this.$router.push('/');
