@@ -46,7 +46,7 @@
 <script>
     import Api from './api'
 
-    export default{
+    export default {
         props: {bookId: Number},
         data() {
             return {
@@ -66,7 +66,7 @@
                     required: ['Word', 'BookId', 'CreatedUser'],
                 },
                 books: [],
-                xd: [1,2,3,4,5],
+                xd: [1, 2, 3, 4, 5],
             };
         },
         methods: {
@@ -78,12 +78,10 @@
                         'BookId': this.data.BookId,
                         'Sentence': this.data.Sentence,
                         'Translate': this.data.Translate,
-                        'WordType': {
-                            'Noun': this.data.Noun,
-                            'Verb': this.data.Verb,
-                            'Adverb': this.data.Adverb,
-                            'Adjective': this.data.Adjective
-                        },
+                        'Noun': this.data.Noun,
+                        'Verb': this.data.Verb,
+                        'Adverb': this.data.Adverb,
+                        'Adjective': this.data.Adjective,
                         'CreatedUser': this.data.CreatedUser,
                         'UpdatedUser': this.data.CreatedUser
                     }).then(response => {
