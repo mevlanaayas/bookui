@@ -22,6 +22,18 @@
             <FormItem label="Username" prop="CreatedUser">
                 <input type="text" v-model="data.CreatedUser"/>
             </FormItem>
+            <FormItem label="Noun" prop="Noun">
+                <input type="text" v-model="data.Noun"/>
+            </FormItem>
+            <FormItem label="Verb" prop="Verb">
+                <input type="text" v-model="data.Verb"/>
+            </FormItem>
+            <FormItem label="Adverb" prop="Adverb">
+                <input type="text" v-model="data.Adverb"/>
+            </FormItem>
+            <FormItem label="Adjective" prop="Adjective">
+                <input type="text" v-model="data.Adjective"/>
+            </FormItem>
             <FormItem>
                 <Button color="primary"
                         :loading="isLoading"
@@ -44,6 +56,10 @@
                     BookId: null,
                     Sentence: null,
                     Translate: null,
+                    Noun: null,
+                    Verb: null,
+                    Adverb: null,
+                    Adjective: null,
                     CreatedUser: 'mevlana',
                 },
                 rules: {
@@ -62,6 +78,12 @@
                         'BookId': this.data.BookId,
                         'Sentence': this.data.Sentence,
                         'Translate': this.data.Translate,
+                        'WordType': {
+                            'Noun': this.data.Noun,
+                            'Verb': this.data.Verb,
+                            'Adverb': this.data.Adverb,
+                            'Adjective': this.data.Adjective
+                        },
                         'CreatedUser': this.data.CreatedUser,
                         'UpdatedUser': this.data.CreatedUser
                     }).then(response => {

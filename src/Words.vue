@@ -4,7 +4,7 @@
         <p>
             <Button color="blue" icon="h-icon-plus" @click="openWordModal = true">Add New Word</Button>
         </p>
-        <Modal v-model="openWordModal">
+        <Modal v-model="openWordModal" v-bind="params">
             <CreateWord @close="openWordModal=false"></CreateWord>
         </Modal>
 
@@ -29,9 +29,9 @@
 
         <h-table @trclick="trclick" :datas="words" stripe>
             <TableItem title="Id" align="center" prop="ID" sort="true"></TableItem>
-            <TableItem title="Name" align="center" prop="Word" sort="true"></TableItem>
-            <TableItem title="Name" align="center" prop="Sentence" sort="true"></TableItem>
-            <TableItem title="Name" align="center" prop="Translate" sort="true"></TableItem>
+            <TableItem title="Word" align="center" prop="Word" sort="true"></TableItem>
+            <TableItem title="Sentence" align="center" prop="Sentence" sort="true"></TableItem>
+            <TableItem title="Translate" align="center" prop="Translate" sort="true"></TableItem>
             <TableItem title="Username" align="center" prop="CreatedUser" sort="true"></TableItem>
             <TableItem title="Created Date" align="center" sort="true">
                 <template slot-scope="{data}">
@@ -64,7 +64,7 @@
         data() {
             return {
                 params: {
-                    closeOnMask: true,
+                    closeOnMask: false,
                     hasMask: true,
                 },
                 openWordDetailModal: false,

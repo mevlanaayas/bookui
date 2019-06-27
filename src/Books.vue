@@ -4,10 +4,10 @@
         <p>
             <Button color="blue" icon="h-icon-plus" @click="openBookModal = true">Add New Book</Button>
         </p>
-        <Modal v-model="openBookModal">
+        <Modal v-model="openBookModal" v-bind="params">
             <CreateBook @close="openBookModal=false"></CreateBook>
         </Modal>
-        <Modal v-model="openWordModal">
+        <Modal v-model="openWordModal" v-bind="params">
             <CreateWord @close="openWordModal=false" :book-id="selectedBook"></CreateWord>
         </Modal>
 
@@ -57,7 +57,7 @@
         data() {
             return {
                 params: {
-                    closeOnMask: true,
+                    closeOnMask: false,
                     hasMask: true,
                 },
                 openBookDetailModal: false,
